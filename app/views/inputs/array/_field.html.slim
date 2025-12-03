@@ -1,0 +1,11 @@
+- is_template = local_assigns[:template] || false
+- input_name = is_template ? nil : "#{f.object_name}[#{attribute}][]"
+- extra_class = is_template ? "template" : ""
+- extra_style = is_template ? "display: none;" : ""
+
+.array-input-item.mb-2(class=extra_class style=extra_style)
+  .input-group
+    span.input-group-text.drag-handle style="cursor: grab;" title="Перетащите" ≡
+    = text_field_tag input_name, value, class: "form-control", placeholder: "Введите значение"
+    button.remove-array-input.btn.btn-outline-danger type="button" aria-label="Удалить"
+      i.fas.fa-times

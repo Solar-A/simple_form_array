@@ -1,0 +1,13 @@
+.array-input-wrapper data-name=(f.object_name + "[#{attribute}]")
+  #array-input-container
+    = hidden_field_tag "#{f.object_name + "[#{attribute}][]"}", ""
+    - (values.presence || []).each do |val|
+      = render "inputs/array/field", f: f, attribute: attribute, value: val
+
+    - # скрытый шаблон для добавления нового поля
+    = render "inputs/array/field", f: f, attribute: attribute, value: nil, template: true
+
+  .mt-2
+    button.add-array-input.btn.btn-sm.btn-outline-primary type="button"
+      i.fas.fa-plus
+      |  Добавить значение
